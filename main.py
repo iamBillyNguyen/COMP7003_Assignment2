@@ -1,7 +1,6 @@
 import argparse
 import sys
 from scapy.all import sniff
-
 from packet_parser import parse_ethernet
 
 # Constraint
@@ -12,9 +11,6 @@ INTERFACE = ""
 FILTER = ""
 PORT = 0
 COUNT = 1
-
-# TODO 1. Separate functions into python files utils.py, packet_parser.py
-# TODO 2. Create a function to handle hex_data gracefully get_field(hex_data, start, end) and return that size of hex_data
 
 def parse_arguments():
     global FILTER, PORT, COUNT, INTERFACE
