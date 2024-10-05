@@ -120,7 +120,7 @@ def parse_tcp(hex_data):
     source_port, hex_data               = get_data_field(hex_data, 4) # 16 bits
     destination_port, hex_data          = get_data_field(hex_data, 4) # 16 bits
     sequence_number, hex_data           = get_data_field(hex_data, 8) # 32 bits
-    acknowledgement_number, hex_data    = get_data_field(hex_data, 8) # 32 bits
+    acknowledgment_number, hex_data     = get_data_field(hex_data, 8) # 32 bits
     data_offset, hex_data               = get_data_field(hex_data, 1) # 4 bits
     reserved_and_flags, hex_data        = get_data_field(hex_data, 3) # 3 bits and 9 bits
     window_size, hex_data               = get_data_field(hex_data, 4) # 16 bits
@@ -146,7 +146,7 @@ def parse_tcp(hex_data):
     display_packet_field("Source Port", source_port, convert_hex_to_decimal(source_port))
     display_packet_field("Destination Port", destination_port, convert_hex_to_decimal(destination_port))
     display_packet_field("Sequence Number", sequence_number, convert_hex_to_decimal(sequence_number))
-    display_packet_field("Acknowledgement Number", acknowledgement_number, convert_hex_to_decimal(acknowledgement_number))
+    display_packet_field("Acknowledgment Number", acknowledgment_number, convert_hex_to_decimal(acknowledgment_number))
     display_packet_field("Data Offset", data_offset, convert_hex_to_decimal(data_offset))
     display_packet_field_for_flags("Reserved + Flags", reserved_and_flags, convert_hex_to_decimal(reserved_and_flags), reserved_and_flag_readable)
     display_packet_field_for_flags("- Reserved", reserved_and_flags[0], convert_hex_to_decimal(reserved_and_flags[0]), reserved_readable)
