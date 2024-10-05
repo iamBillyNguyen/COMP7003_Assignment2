@@ -1,7 +1,12 @@
+import sys
+
 def get_data_field(hex_data, hex_length):
+    if len(hex_data) == 0:
+        sys.exit("Packet is empty. Try again.")
+
     data_field = hex_data[:hex_length]
-    if len(hex_data[hex_length:]) > 0:
-        hex_data = hex_data[hex_length:]
+    hex_data = hex_data[hex_length:]
+
     return data_field, hex_data
 
 def convert_to_readable_mac(mac_address):

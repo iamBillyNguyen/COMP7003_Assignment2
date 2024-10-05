@@ -13,10 +13,6 @@ UDP = "17"
 
 def parse_ethernet(hex_data):
     # Ethernet header is the first 14 bytes (28 hex characters)
-    # dest_mac = hex_data[0:12]
-    # source_mac = hex_data[12:24]
-    # ether_type = hex_data[24:28]
-
     dest_mac, hex_data = get_data_field(hex_data, 12)
     source_mac, hex_data = get_data_field(hex_data, 12)
     ether_type, hex_data = get_data_field(hex_data, 4)
@@ -44,16 +40,6 @@ def parse_ethernet(hex_data):
 
 
 def parse_arp(hex_data):
-    # hardware_type   = hex_data[28:32] # 2 bytes
-    # protocol_type   = hex_data[32:36] # 2 bytes
-    # hardware_size   = hex_data[36:38] # 1 byte
-    # protocol_size   = hex_data[38:40] # 1 byte
-    # opcode          = hex_data[40:44] # 2 bytes
-    # sender_mac      = hex_data[44:56] # 6 bytes
-    # sender_ip       = hex_data[56:64] # 4 bytes
-    # target_mac      = hex_data[64:76] # 6 bytes
-    # target_ip       = hex_data[76:84] # 4 bytes
-
     hardware_type, hex_data   = get_data_field(hex_data, 4) # 2 bytes
     protocol_type, hex_data   = get_data_field(hex_data, 4) # 2 bytes
     hardware_size, hex_data   = get_data_field(hex_data, 2) # 1 byte
@@ -81,18 +67,6 @@ def parse_arp(hex_data):
 
 def parse_ipv4(hex_data):
     global TCP, UDP
-
-    # version             = hex_data[28:29] # 4 bits
-    # header_length       = hex_data[29:30] # 4 bits
-    # type_of_service     = hex_data[30:32] # 8 bits
-    # total_length        = hex_data[32:36] # 16 bits
-    # identification      = hex_data[36:40] # 16 bits
-    # flags_and_offset    = hex_data[40:44] # 3 bits and 13 bits
-    # time_to_live        = hex_data[44:46] # 8 bits
-    # protocol            = hex_data[46:48] # 8 bits
-    # header_checksum     = hex_data[48:52] # 16 bits
-    # source_ip           = hex_data[52:60] # 32 bits
-    # destination_ip      = hex_data[60:68] # 32 bits
 
     version, hex_data             = get_data_field(hex_data, 1) # 4 bits
     header_length, hex_data       = get_data_field(hex_data, 1) # 4 bits
@@ -142,19 +116,6 @@ def parse_ipv4(hex_data):
         sys.exit("Program only supports TCP or UDP protocol. Try again.")
 
 def parse_tcp(hex_data):
-    # hex_data = hex_data.lower()
-    # source_port = hex_data[68:72]
-    # destination_port = hex_data[72:76]
-    # sequence_number = hex_data[76:84]
-    # acknowledgement_number = hex_data[84:92]
-    # data_offset = hex_data[92:93]
-    # reserved_and_flags = hex_data[93:96]
-    # window_size = hex_data[96:100]
-    # checksum = hex_data[100:104]
-    # urgent_pointer = hex_data[104:108]
-    # options = hex_data[108:132]
-    # data = hex_data[132:len(hex_data)]
-
     hex_data                            = hex_data.lower()
     source_port, hex_data               = get_data_field(hex_data, 4) # 16 bits
     destination_port, hex_data          = get_data_field(hex_data, 4) # 16 bits
@@ -204,11 +165,6 @@ def parse_tcp(hex_data):
     display_packet_field("Data", data, convert_hex_to_text(data))
 
 def parse_udp(hex_data):
-    # source_port = hex_data[68:72]
-    # destination_port = hex_data[72:76]
-    # length = hex_data[76:80]
-    # checksum = hex_data[80:84]
-
     source_port, hex_data       = get_data_field(hex_data, 4) # 16 bits
     destination_port, hex_data  = get_data_field(hex_data, 4) # 16 bits
     length, hex_data            = get_data_field(hex_data, 4) # 16 bits
