@@ -9,17 +9,15 @@ MAX_COUNT = 3
 # User-defined Arguments
 INTERFACE = ""
 FILTER = ""
-PORT = 0
 COUNT = 1
 
 def parse_arguments():
-    global FILTER, PORT, COUNT, INTERFACE
+    global FILTER, COUNT, INTERFACE
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--interface", type=str, required=True, help="Interface to scan for")
     parser.add_argument("-f", "--filter", type=str, required=True, help="Filter protocol to scan for. Supported protocols: arp, tcp, udp.")
     parser.add_argument("-c", "--count", type=int, help="Number of packets to scan for. Supported number of packets is between 1 to 3. (Default: 1)")
-    parser.add_argument("-p", "--port", type=int, help="Port to scan for. (Default: unused)") # Optional
 
     try:
         args = parser.parse_args()
@@ -30,7 +28,6 @@ def parse_arguments():
 
     INTERFACE = args.interface.lower()
     FILTER = args.filter.lower()
-    print("Interface:\t", INTERFACE)
 
     if args.count:
         if MAX_COUNT >= args.count > 0:
@@ -38,16 +35,9 @@ def parse_arguments():
         else:
             parser.print_help()
             sys.exit("Program only supports between 1 to 5 packets")
+
+    print("Interface:\t", INTERFACE)
     print("Count:\t\t", COUNT)
-
-    if (FILTER != "tcp") and (FILTER != "udp") and (FILTER != "arp"):
-        parser.print_help()
-        sys.exit("Program only supports TCP, UDP, and ARP filtering.")
-
-    if args.port:
-        PORT = args.port
-        print("Port:\t\t", PORT)
-        FILTER += " port " + str(PORT)
     print("Filter:\t\t", FILTER)
 
 # Function to handle each captured packet

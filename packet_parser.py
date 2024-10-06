@@ -36,7 +36,7 @@ def parse_ethernet(hex_data):
         print("Packet type: IPv4")
         parse_ipv4(hex_data)
     else:
-        sys.exit("Program only supports ARP, and IPv4 EtherType. Try again.")
+        sys.exit("Program only supports parsing ARP, and IPv4 EtherType. Try again.")
 
 
 def parse_arp(hex_data):
@@ -113,7 +113,7 @@ def parse_ipv4(hex_data):
         print(f"Packet type: UDP")
         parse_udp(hex_data)
     else:
-        sys.exit("Program only supports TCP or UDP protocol. Try again.")
+        sys.exit("Program only supports parsing for TCP or UDP protocol. Try again.")
 
 def parse_tcp(hex_data):
     hex_data                            = hex_data.lower()
