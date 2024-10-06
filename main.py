@@ -29,12 +29,12 @@ def parse_arguments():
     INTERFACE = args.interface.lower()
     FILTER = args.filter.lower()
 
-    if args.count:
+    if args.count is not None:
         if MAX_COUNT >= args.count > 0:
             COUNT = args.count
         else:
             parser.print_help()
-            sys.exit("Program only supports between 1 to 5 packets")
+            sys.exit("Program only supports between 1 to 3 packets")
 
     print("Interface:\t", INTERFACE)
     print("Count:\t\t", COUNT)
